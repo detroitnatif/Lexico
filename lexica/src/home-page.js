@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Container, Button, Form } from 'react-bootstrap';
+import NavBar from './navbar';
 
 function HomePage() {
   // State for the input value
@@ -13,29 +9,19 @@ function HomePage() {
   const [wordsList, setWordsList] = useState([]);
 
   // Function to handle the addition of a word
+  // Need to add functionality to detect if the inputted word -- whatever is in inputValue -- is an actual word
+  // Maybe can download a txt file with all possible words from dictionary and check it based on that
   const addWord = () => {
     if (!inputValue.trim()) return; // Prevent adding empty strings
-    setWordsList([...wordsList, inputValue]);
+    setWordsList([...wordsList, inputValue]); //This line creates a new array with all of the existing elements with the input 
+                                             // value added. When it's added we reset the value of inputValue to blank
+                                             // to add another word (on the next line)
     setInputValue(''); // Clear the input after adding
   };
 
   return (
     <>
-      <Navbar className="bg-body-tertiary" bg="light" data-bs-theme="light">
-        <Container>
-          <Link to="/" className="navbar-brand">Lexica</Link>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link href="#ai-sentence-generation">Use it in a Sentence</Nav.Link>
-            <Nav.Link href="#type-sentence">Write it Out</Nav.Link>
-          </Nav>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              Signed in as: <a href="#login">Dylan</a>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <NavBar />
 
       <div className="p-4 fs-1 text-center" style={{ maxWidth: '80%', margin: 'auto' }}>
         Welcome to Lexica! Add your words below and cement them into your vocabulary with our customized AI training.

@@ -1,8 +1,12 @@
 import React from 'react';
+import NavBar from './navbar';
 
 function AboutPage() {
   return (
-    <div>Made by Tyler and Dylan</div>
+    <>
+      <NavBar />
+      <div>Made by Dylan and Tyler</div>
+    </>
   );
 }
 
